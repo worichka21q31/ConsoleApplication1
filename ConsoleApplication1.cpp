@@ -7,152 +7,73 @@
 #include <fstream>
 using namespace std;
 
-template <typename T>
-void Massborm(T arr, int size);
-template <typename T>
-void Massarm(T arr, int size);
-template <typename T>
-void Mass(T arr, int size);
-
-bool NoWay(int menu2);
-template <typename T>
-void SortArr(T arrin, int size, T arr, bool NoWay);
-
 int main()
 {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
-	srand(time(NULL));
-	const int size = 10;
-	int numbers[size]{};
-	int numbers2[size]{};
-	int ran;
-	int menu;
-	int menu2;
-	while (true)
-	{
-
-
-		do
-		{
-			system("cls");
-			cout << "\n\t\tКак ввести?";
-			cout << "\n\t1) Ручками";
-			cout << "\n\t2) Лапками Робота";
-			cout << "\n\t0) Выйти\n";
-			cin >> menu;
-		} while (menu < 0 || menu > 2);
-		if (menu == 0)
-		{
-			break;
-		}
-		else if (menu == 1)
-		{
-			 system("cls");
-			 cout << "\n\tВведите свои значения:\n";
-			 Massarm(numbers, size);
-			 cout << "\n\tВаш Массив:\n";
-			 Mass(numbers, size);
-			 cout << "\n";
-			 system("pause");
-		}
-		else if (menu == 2)
-		{
-			system("cls");
-			Massborm(numbers, size);
-			cout << "\n\tВаш Массив:\n";
-			Mass(numbers, size);
-			cout << "\n";
-			system("pause");
-		}
-
-		if (menu == 1 || menu == 2)
-		{
-			
-			do
-			{
-				system("cls");
-				cout << "\n\t\tКак сортировать??";
-				cout << "\n\t1) По возрастанию";
-				cout << "\n\t2) По убыванию";
-				cout << "\n\t3) Не трощь!!!\n";
-				cin >> menu2;
-
-			} while (menu2 < 1 || menu2 > 3);
-
-			if (menu2 == 3)
-			{
-				Mass(numbers, size);
-			}
-			else 
-			{
-				SortArr(numbers2, size, numbers, NoWay(menu2));
-	
-			}
- 
-
-		}
-
-
-
-
-
-
-		return 0;
-	}
-}
-
-template <typename T>
-void Massborm(T arr, int size)
-{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    int const size = 10;
+    int arr[size] ;
+    srand(time(NULL));
+    int maxRandom = 10;
+    int max;
+    int min = maxRandom;
+    
 	for (int i = 0; i < size; i++)
 	{
-		arr[i] = rand() % 100;
-	}
-}
-template <typename T>
-void Massarm(T arr, int size)
-{
-	int ran;
-	for (int i = 0; i < size; i++)
-	{
-		cout << "Знач. " << i + 1 << " ";
-		cin >> arr[i] ;
-	}
-}
-template <typename T>
-void Mass(T arr, int size)
-{
-	for (int i = 0; i < size; i++)
-	{
+		arr[i] = rand() % maxRandom;
 		cout << arr[i] << " ";
+		if(max <= arr[i])
+		{
+		    max = arr[i];
+		}
+		if(min >= arr[i])
+		{
+		    min = arr[i];
+		}
 	}
-}
-bool NoWay(int menu2)
-{
-	if (menu2 == 1)
-	{
-		return false;
-	}
-	else if (menu2 == 2)
-	{
-		return true;
-	}
-	else 
-	{
-		return false;
-	}
-}
-template <typename T>
-void SortArr(T arrin, int size , T arr, bool NoWay)
-{
-	if (NoWay == true)
-	{
+	cout << "\nМакс: " << max;
+	cout << "\nМин: " << min;
 
-	}
-	else if (NoWay == false)
-	{
-		
-	}
+	int sum;
+    int diap;
+    cout << "\nВведите диапазон для поиска числа ";
+    cin >> diap;
+    for(int i = 0; i < size; i++)
+    {
+        if(arr[i] < diap) 
+        {
+            sum += arr[i];
+        }
+    }
+    cout << sum;
 
+    int max2;
+    int min2 = 9000000;
+    int startmount;
+    int finishmount;
+    int const size2 = 13;
+    int arr2[size2] ;
+    for (int i = 1; i < size2; i++)
+    {
+        cout << "\nВведите прибыль за " << i << " Месяц";
+        cin >> arr2[i];
+    }
+    cout << "\nВведите от какого месяца расчитать прибыль ";
+    cin >> startmount;
+    cout << "\nВведите до какого месяца расчитать прибыль ";
+    cin >> finishmount;
+    for (int i = startmount; i < finishmount+1; i++)
+    {
+        if(max2 <= arr2[i])
+		{
+		    max2 = arr2[i];
+		}
+		if(min2 >= arr2[i])
+		{
+		    min2 = arr2[i];
+		}
+    }
+    cout << "\nМакс: " << max2;
+	cout << "\nМин: " << min2;
 }
+// Немного не понял 2 задание, а в 3 не понял нужно ли включительно выбранные месяца или лишь их промежуток.
